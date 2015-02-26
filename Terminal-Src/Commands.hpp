@@ -11,12 +11,29 @@ Commands supported:
 **/
 class Commands{
    public:
-   //Used if user uses ls command
+   //Constructor to get command
    Commands(string command);
-   string getCommand();
-   private:
-    string cmd;
+   /**
+   Getters and Setters
+   **/
 
+   //returns inputed command
+   string getCommand();
+
+   //sets directory
+   void setDirectory(string d);
+
+   //get directory
+   string getCWDirectory();
+
+   //allocate files and folders names to array
+   void getFiles();
+
+   private:
+   //used to localize command in cpp file
+   string cmd;
+   //localize directory
+   string cwd;
 
 };
 

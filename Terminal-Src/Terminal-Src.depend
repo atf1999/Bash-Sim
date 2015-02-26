@@ -1,15 +1,17 @@
 # depslib dependency file v1.0
-1424913493 source:d:\terminal-simulator\terminal-src\main.cpp
+1424918495 source:d:\terminal-simulator\terminal-src\main.cpp
 	<iostream>
 	<windows.h>
 	<direct.h>
+	<locale>
 	<Commands.hpp>
 
-1424915890 d:\terminal-simulator\terminal-src\\commands.hpp
+1424918869 d:\terminal-simulator\terminal-src\\commands.hpp
 	<string>
 
-1424915354 source:d:\terminal-simulator\terminal-src\commands.cpp
+1424918861 source:d:\terminal-simulator\terminal-src\commands.cpp
 	<Commands.hpp>
 	<iostream>
 	<string>
+	<dirent.h>
 

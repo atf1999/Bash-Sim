@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include <direct.h>
-#include <conio.h>
+#include <locale>
 #include <Commands.hpp>
 using namespace std;
 //Function to get cwd of the exe
@@ -11,42 +11,61 @@ void programInit();
 string command = "";
 //String for directory
 string directory = "";
+//lowercase command
+string lowerCommand = "";
 int main()
 {
-    //Objects for coloring console text
-    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-    WORD wOldColor;
-    CONSOLE_SCREEN_BUFFER_INFO textSchema;
+   //Objects for coloring console text
+   HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+   WORD wOldColor;
+   CONSOLE_SCREEN_BUFFER_INFO textSchema;
 
-    //Retain current color data
-    GetConsoleScreenBufferInfo(h, &textSchema);
-    wOldColor = textSchema.wAttributes;
+   //Retain current color data
+   GetConsoleScreenBufferInfo(h, &textSchema);
+   wOldColor = textSchema.wAttributes;
 
-    //Intialize program
-    directory = getDirectory();
-    cout<<"Bash Command Line Program.  Input a command to execute\n\n";
-    programInit();
+   //Intialize program
+   directory = getDirectory();
+   cout<<"Bash Command Line Program.  Input a command to execute\n\n";
+   programInit();
 
 
 
-    return 0;
+   return 0;
 }
 //Function to get exe directory
 string getDirectory(){
-char buffer[MAX_PATH];
-GetModuleFileName(NULL, buffer, MAX_PATH);
-string::size_type pos = string(buffer).find_last_of("\\/");
-return string(buffer).substr(0, pos);
+   char buffer[MAX_PATH];
+   GetModuleFileName(NULL, buffer, MAX_PATH);
+   string::size_type pos = string(buffer).find_last_of("\\/");
+   return string(buffer).substr(0, pos);
 }
 
 void programInit(){
-//Creates directory
-cout << directory + ">" << endl;
-cin>> command;//Input for command
+   //Creates directory
+   cout << directory + ">" << endl;
+   cin>> command;//Input for command
 
-//Initialize class object
-Commands input = Commands(command);
-cout<<input.getCommand();
+   //Convert to lowercase
+   locale loc;
+   for(int i = 0; i < command.length(); ++i){
+      lowerCommand += std::tolower(command[i], loc);
+   }
+
+   //Initialize class object
+   Commands input = Commands(lowerCommand);
+
+   //adds directory
+   input.setDirectory(directory);
+
+
+   if(input.getCommand() == "ls"){
+        cout<<"You inputed the ls command\n\n";
+        input.getFiles();
+   }
+   else{
+        cout<<"Command " <<"'"<<input.getCommand()<<"'"<<" is not supported";
+}
 
 
 
