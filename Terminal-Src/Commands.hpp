@@ -19,6 +19,8 @@ class Commands{
 
    //returns inputed command
    string getCommand();
+   //sets the command
+   void setCommand(string newCmd);
 
    //sets directory
    void setDirectory(string d);

@@ -2,17 +2,25 @@
 #include <windows.h>
 #include <direct.h>
 #include <locale>
+#include <cstdlib>
 #include <Commands.hpp>
 using namespace std;
 //Function to get cwd of the exe
 string getDirectory();
+//used for recursiveness
 void programInit();
+//resets the command
+void reset();
+//exits program;
+int close();
 //String to hold command
 string command = "";
 //String for directory
 string directory = "";
 //lowercase command
 string lowerCommand = "";
+string dSlash = "\\";
+string slash = dSlash.substr(0, 1);
 int main()
 {
    //Objects for coloring console text
@@ -40,6 +48,8 @@ string getDirectory(){
    string::size_type pos = string(buffer).find_last_of("\\/");
    return string(buffer).substr(0, pos);
 }
+void reset(){lowerCommand = "";}
+int close(){return 0x0;}
 
 void programInit(){
    //Creates directory
@@ -53,7 +63,7 @@ void programInit(){
    }
 
    //Initialize class object
-   Commands input = Commands(lowerCommand);
+   Commands input(lowerCommand);
 
    //adds directory
    input.setDirectory(directory);
@@ -62,6 +72,16 @@ void programInit(){
    if(input.getCommand() == "ls"){
         cout<<"You inputed the ls command\n\n";
         input.getFiles();
+        reset();
+        programInit();
+   }
+   else if(input.getCommand() == "cd"){
+          cout<<input.getCWDirectory()<<"\n\n";
+          reset();
+          programInit();
+   }
+   else if(input.getCommand() == "exit"){
+      close();
    }
    else{
         cout<<"Command " <<"'"<<input.getCommand()<<"'"<<" is not supported";
