@@ -31,14 +31,19 @@ void Commands::getFiles(){
    struct dirent *entry;
    //vector to hold files and folders
    vector<string>names;
+   //checks for basic command
+   if(Commands::getCommand() == "ls"){
    //makes sure directory is not null
-    if((dir = opendir(getCWDirectory().c_str())) != NULL){
+
+    if((dir = opendir(Commands::getCWDirectory().c_str())) != NULL){
         while((entry = readdir(dir)) != NULL){
             //Adds Items to vector
             names.push_back(entry->d_name);
 
 
         }
+
+
         //prints all but the last comma
         for(int j = 0; j < names.size(); ++ j){
             cout<<names[j];
@@ -47,4 +52,9 @@ void Commands::getFiles(){
         cout<<"\n";
     }
 
-}
+    }
+    }
+
+
+
+

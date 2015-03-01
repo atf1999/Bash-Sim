@@ -15,20 +15,21 @@
 	<string>
 	<dirent.h>
 
-1425071718 source:c:\users\tommy\terminal-simulator\terminal-src\commands.cpp
+1425174284 source:c:\users\tommy\terminal-simulator\terminal-src\commands.cpp
 	<Commands.hpp>
 	<iostream>
 	<string>
 	<dirent.h>
 	<vector>
 
-1425071718 c:\users\tommy\terminal-simulator\terminal-src\\commands.hpp
+1425174230 c:\users\tommy\terminal-simulator\terminal-src\\commands.hpp
 	<string>
 
-1425070092 source:c:\users\tommy\terminal-simulator\terminal-src\main.cpp
+1425174421 source:c:\users\tommy\terminal-simulator\terminal-src\main.cpp
 	<iostream>
 	<windows.h>
 	<direct.h>
 	<locale>
+	<cstdlib>
 	<Commands.hpp>
 
